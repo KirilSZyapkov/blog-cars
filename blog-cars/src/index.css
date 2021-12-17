@@ -1,0 +1,15 @@
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+  }
+
+body{
+    margin: 0;
+    padding: 0;
+}

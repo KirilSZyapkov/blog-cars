@@ -48,19 +48,19 @@ function getOptions(method = 'get', body) {
 }
 
 export async function get(url) {
-    return await request(url, getOptions());
+    return await request(host + url, getOptions());
 };
 
 export async function put(url, data) {
-    return await request(url, getOptions('put', data));
+    return await request(host + url, getOptions('put', data));
 };
 
 export async function post(url, data) {
-    return await request(url, getOptions('post', data));
+    return await request(host + url, getOptions('post', data));
 };
 
 export async function del(url) {
-    return await request(url, getOptions('delete'));
+    return await request(host + url, getOptions('delete'));
 };
 
 export async function login(data) {
