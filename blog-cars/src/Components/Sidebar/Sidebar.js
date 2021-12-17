@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom';
+
 import style from './Sidebar.module.css';
 
 function Sidebar() {
     return (
         <div className={style.sidebar}>
-            <a href="#home"><i className="fa fa-fw fa-home"></i> Home</a>
-            <a href="#services"><i className="fa fa-fw fa-wrench"></i> Services</a>
-            <a href="#clients"><i className="fa fa-fw fa-user"></i> Clients</a>
-            <a href="#contact"><i className="fa fa-fw fa-envelope"></i> Contact</a>
-        </div>
-    );
+            <Link to="/"><i className="fa fa-fw fa-home"></i> Home</Link>
+            <Link to="/"><i className="fas fa-layer-group"></i> My Blogs</Link>
+            <Link to="/"><i className="fas fa-users"></i> Groups</Link>
+            <Link to="/"><i className="fa fa-fw fa-envelope"></i> Contact</Link>
+        </div>  );
 }
 
 export default Sidebar;
+
