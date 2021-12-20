@@ -13,7 +13,8 @@ function Sidebar() {
             </header>
             <footer className={style.sidebar_footer}>
                 <div className={style.sidebar_footer_content}>
-                footer
+                <Link to="/contact-us">Contact Us</Link>
+                <p>All rights reserved</p>
 
                 </div>
             </footer>

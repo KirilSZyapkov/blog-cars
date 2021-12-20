@@ -4,6 +4,9 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Sidebar from './Components/Sidebar/Sidebar';
 import HomePage from './Components/HomePage/HomPage';
+import Login from './Components/Login/Login';
+import Register from './Components/Register/Register';
+
 
 function App() {
 
@@ -15,6 +18,8 @@ function App() {
         <section className="App-body-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </section>
       </div>
