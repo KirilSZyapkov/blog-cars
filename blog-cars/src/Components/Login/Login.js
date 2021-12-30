@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import style from './Login.module.css';
 import { login } from '../../services/data';
 
-function Login() {
+function Login({
+    authorization
+}) {
 
 
-    async function login(e) {
+    async function loginUser(e) {
         e.preventDefault();
-
+        authorization();
     }
 
     return (
-        <form className={style.form_login} onSubmit={login}>
+        <form className={style.form_login} onSubmit={loginUser}>
             <div className={style.container}>
                 <h1>Login</h1>
 
@@ -27,9 +29,9 @@ function Login() {
 
                 <button type="submit" className={style.loginbtn}>Login</button>
 
-                <div className={style.container_signin}>
-                    <p>Don't have an account? <Link to="/register">Create Account</Link></p>
-                </div>
+
+                <p>Don't have an account? <Link to="/register">Create Account</Link></p>
+
             </div>
 
         </form>

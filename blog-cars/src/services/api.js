@@ -64,27 +64,27 @@ export async function del(url) {
 };
 
 export async function login(data) {
-    const result = await post(host + '/login', data);
+    const result = await post('/login', data);
 
     sessionStorage.setItem('authToken', result.sessionToken);
-    sessionStorage.setItem('userName', data.userName);
+    sessionStorage.setItem('userName', data.username);
     sessionStorage.setItem('userId', result.objectId);
 
     return result;
 }
 
 export async function register(data) {
-    const result = await post(host + '/users', data);
+    const result = await post('/users', data);
 
     sessionStorage.setItem('authToken', result.sessionToken);
-    sessionStorage.setItem('userName', data.userName);
+    sessionStorage.setItem('userName', data.username);
     sessionStorage.setItem('userId', result.objectId);
 
     return result;
 }
 
 export async function logout() {
-    const result = await post(host + '/users');
+    const result = await post('/users');
 
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('userName');

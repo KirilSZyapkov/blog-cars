@@ -1,5 +1,5 @@
 .form_register{
-    margin-top: 4%;
+    margin-top: 3%;
 }
 .container_register {
     margin: auto;
@@ -37,7 +37,7 @@
     background-color: #121212;
     border: 1px solid red;
     padding: 16px 20px;
-    margin: 25px 0;
+    margin: 8px 0;
     font-size: 15px;
     cursor: pointer;
     width: 100%;
