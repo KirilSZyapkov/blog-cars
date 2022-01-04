@@ -86,7 +86,7 @@ export async function register(data) {
 }
 
 export async function logout() {
-    const result = await post('/users');
+    const result = await post('/logout', {});
 
     sessionStorage.removeItem('authToken');
     sessionStorage.removeItem('userName');

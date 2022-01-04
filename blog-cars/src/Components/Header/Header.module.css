@@ -8,7 +8,10 @@
   }
   
 
-  .topnav a {
+  .topnav a, 
+  .logout_btn {
+    cursor: pointer;
+    margin-left: 5px;
     color: #FF0000;
     text-align: center;
     padding: 8px 16px;

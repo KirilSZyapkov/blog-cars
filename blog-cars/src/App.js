@@ -18,14 +18,15 @@ function App() {
     setUser(sessionStorage.getItem('userName'));
   }
 
-  function logout() {
+  function logOut() {
+    sessionStorage.clear();
     setUser(sessionStorage.getItem('userName'));
   }
 
   return (
     <AuthContext.Provider value={user}>
       <div className="App">
-        <Header user={user} />
+        <Header user={user} logOut={logOut} />
         <div className="App-body">
           <Sidebar />
           <section className="App-body-content">
@@ -40,7 +41,7 @@ function App() {
 
               </Route>
 
-              
+
             </Routes>
           </section>
         </div>
