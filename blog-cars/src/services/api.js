@@ -1,3 +1,4 @@
+import errors from './errors';
 
 const host = 'https://parseapi.back4app.com';
 
@@ -9,7 +10,8 @@ async function request(url, options) {
         if (respons.ok === false) {
             const error = await respons.json();
 
-            throw new Error(error.message);
+            throw new Error(errors(error));
+
         }
 
         try {

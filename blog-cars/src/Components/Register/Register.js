@@ -11,13 +11,7 @@ function Register({
 }) {
     const [errorM, setErrorM] = useState(null);
     const navigation = useNavigate();
-    const user = sessionStorage.getItem('userName');
 
-
-    if (user) {
-        navigation('/');
-
-    }
 
     async function createAccount(e) {
         e.preventDefault();

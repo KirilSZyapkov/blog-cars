@@ -1,9 +1,9 @@
 module.exports = (err) => {
     let message;
-    if (err.errors === undefined) {
-        message = err.message;
+    if (err.message === undefined) {
+        message = err.error;
     } else {
-        message = Object.values(err.errors).join('\n');
+        message = err.message;
     }
 
     return message;

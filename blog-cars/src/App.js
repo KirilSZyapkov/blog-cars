@@ -7,7 +7,8 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import HomePage from './Components/HomePage/HomPage';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
-
+import AuthContext from './contexts/AuthContext';
+import UserGuard from './Components/common/Guard/UserGuard';
 
 function App() {
 
@@ -22,19 +23,29 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Header user={user} />
-      <div className="App-body">
-        <Sidebar />
-        <section className="App-body-content">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login authorization={authorization}/>} />
-            <Route path="/register" element={<Register authorization={authorization} user={user}/>} />
-          </Routes>
-        </section>
+    <AuthContext.Provider value={user}>
+      <div className="App">
+        <Header user={user} />
+        <div className="App-body">
+          <Sidebar />
+          <section className="App-body-content">
+            <Routes>
+
+              <Route path="/" element={<HomePage />} />
+
+              <Route element={<UserGuard />}>
+
+                <Route path="/login" element={<Login authorization={authorization} />} />
+                <Route path="/register" element={<Register authorization={authorization} />} />
+
+              </Route>
+
+              
+            </Routes>
+          </section>
+        </div>
       </div>
-    </div>
+    </AuthContext.Provider>
   );
 }
 
