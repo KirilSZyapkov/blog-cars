@@ -5,10 +5,12 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Sidebar from './Components/Sidebar/Sidebar';
 import HomePage from './Components/HomePage/HomPage';
+import Create from './Components/Create/Create';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import AuthContext from './contexts/AuthContext';
 import UserGuard from './Components/common/Guard/UserGuard';
+import RouteGuard from './Components/common/Guard/RouteGuard'
 
 function App() {
 
@@ -34,6 +36,10 @@ function App() {
 
               <Route path="/" element={<HomePage />} />
 
+              <Route element={<RouteGuard />}>
+                <Route path="/create" element={<Create />} />
+              </Route>
+              
               <Route element={<UserGuard />}>
 
                 <Route path="/login" element={<Login authorization={authorization} />} />

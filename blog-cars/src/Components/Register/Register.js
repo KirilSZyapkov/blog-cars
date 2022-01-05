@@ -43,8 +43,9 @@ function Register({
             navigation('/');
 
         } catch (err) {
+            
             setErrorM(err.message);
-            // alert(err.message);
+            
         }
 
 
