@@ -23,9 +23,7 @@ function HomePage() {
 
     return (
         <section className={style.container}>
-            <Item />
-            <Item />
-            <Item />
+            {data.length !== 0 ? data.map(d => <Item key={d.objectId} {...d} />) : <h1>Loading...</h1>}
         </section>
     );
 }
