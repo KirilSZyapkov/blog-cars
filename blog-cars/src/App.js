@@ -9,8 +9,10 @@ import Create from './Components/Create/Create';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import AuthContext from './contexts/AuthContext';
+import BlogPage from './Components/BlogPage/BlogPage';
+
 import UserGuard from './Components/common/Guard/UserGuard';
-import RouteGuard from './Components/common/Guard/RouteGuard'
+import RouteGuard from './Components/common/Guard/RouteGuard';
 
 function App() {
 
@@ -39,7 +41,9 @@ function App() {
               <Route element={<RouteGuard />}>
                 <Route path="/create" element={<Create />} />
               </Route>
-              
+
+              <Route path='/blog/:id' element={<BlogPage />} />
+
               <Route element={<UserGuard />}>
 
                 <Route path="/login" element={<Login authorization={authorization} />} />

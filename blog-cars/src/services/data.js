@@ -4,7 +4,6 @@ import * as userAPI from './userApi';
 export const login = api.login;
 export const register = api.register;
 export const logout = api.logout;
-const userId = sessionStorage.getItem('userId');
 
 export async function getAllBlogs() {
     
@@ -16,6 +15,7 @@ export async function getBlogById(id) {
 }
 
 export async function createBlog(data) {
+    const userId = sessionStorage.getItem('userId');
     
     const body = Object.assign({}, data, {
         admin: {
@@ -28,6 +28,7 @@ export async function createBlog(data) {
 }
 
 export async function getUserOwnBlogs() {
+    const userId = sessionStorage.getItem('userId');
     const q = JSON.stringify({
         admin: {
             __type: 'Pointer',

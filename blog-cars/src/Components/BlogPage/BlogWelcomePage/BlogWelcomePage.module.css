@@ -1,0 +1,86 @@
+.hero {
+    font-size: 125%;
+    margin-top: 128px;
+}
+
+.team_logo {
+    width: 20%;
+    margin-right: 55px;
+}
+
+.details {
+    color: #999999;
+    
+}
+
+.tm_members li {
+    list-style: none;
+    margin: 8px 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.tm_control {
+    padding: 4px 8px;
+    margin: 0 4px;
+}
+
+.error {
+    text-align: center;
+    color: red
+}
+
+.action {
+    display: inline-block;
+    background-color: #acd0c0;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: black;
+    margin-right: 8px;
+    border: none;
+    font-size: 15px;
+}
+
+.action:hover {
+    background-color: #d9b44a;
+    color: white;
+    cursor: pointer;
+}
+
+.layout::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pad_large {
+    padding: 32px 64px;
+}
+
+.invert {
+    color: #acd0c0
+}
+
+.header{
+    
+    height: 200px;
+    display: flex;
+    margin-top: 10px;
+    margin-left: 25px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.team_logo_img{
+    width: 100%;
+    border-radius: 100%;
+    
+}
+
+.tm_members_p{
+    display: inline-block;
+    
+    width: 11%;
+}
