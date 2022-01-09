@@ -1,13 +1,38 @@
 import { Link } from 'react-router-dom';
 
+import {joinTheBlog} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
 
 function BlogWelcomePage({
     blog,
     user
 }) {
-    console.log(blog);
-    console.log(user);
+   
+
+    async function joinTeam(){
+        
+        joinTheBlog(user.objectId, blog.objectId);
+    }
+
+    async function leaveTeam(){
+
+    }
+
+    async function cancelJoinRequest(){
+
+    }
+
+    async function removeFromMemberFromGroup(){
+
+    }
+
+    async function approveMembershipRequest(){
+        alert('Request approved!');
+    }
+
+    async function declineMembershiRequest(){
+
+    }
 
     return (
         <section className={style.team_home}>
@@ -22,8 +47,8 @@ function BlogWelcomePage({
                         <p>{blog.description}</p>
                         <span className={style.details}><p>{blog.members?.length} Members</p></span>
                         <div>
-                            <a href="#" className={style.action}>Edit team</a>
-                            <a href="#" className={style.action}>Join team</a>
+                            <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link>
+                            <button onClick={joinTeam} className={style.action}>Join team</button>
                             <a href="#" className={style.action} className={style.invert}>Leave team</a>
                             Membership pending. <a href="#">Cancel request</a>
                         </div>
@@ -33,17 +58,16 @@ function BlogWelcomePage({
                     <h3>Members</h3>
                     <ul className={style.tm_members}>
                         <li><p>Admin: <Link to={`/admin/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
-                        <li><p className={style.tm_members_p}>James</p><a href="#" className={style.tm_control} className={style.action}>Remove from team</a></li>
-                        <li><p className={style.tm_members_p}>Meowth</p><a href="#" className={style.tm_control} className={style.action}>Remove from team</a></li>
+                        <li><p className={style.tm_members_p}>James</p><button className={style.tm_control} className={style.action}>Remove from team</button></li>
+                        
                     </ul>
                 </div>
                 <div className={style.pad_large}>
                     <h3>Membership Requests</h3>
                     <ul className={style.tm_members}>
-                        <li><p className={style.tm_members_p}>Petar</p><button className={style.tm_control} className={style.action}>Approve</button><button
+                        <li><p className={style.tm_members_p}>Petar</p><button onClick={approveMembershipRequest} className={style.tm_control} className={style.action}>Approve</button><button
                             className={style.tm_control} className={style.action}>Decline</button></li>
-                        <li><p className={style.tm_members_p}>Petya</p><a href="#" className={style.tm_control} className={style.action}>Approve</a><a href="#"
-                            className={style.tm_control} className={style.action}>Decline</a></li>
+                        
                     </ul>
                 </div>
             </article >

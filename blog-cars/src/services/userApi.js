@@ -53,3 +53,8 @@ export async function getUser() {
     const user = await request(host + '/me', getOptions());
     return user;
 }
+
+export async function getUserById(id){
+    const user = await request(host+`/${id}`, getOptions());
+    return user;
+}

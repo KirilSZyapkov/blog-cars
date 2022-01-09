@@ -38,3 +38,10 @@ export async function getUserOwnBlogs() {
     })
     return await api.get('/classes/Blog?where=' + encodeURIComponent(q));
 }
+
+export async function joinTheBlog(userId, blogId){
+    const blog = await getBlogById(blogId);
+    const user = await userAPI.getUserById(userId);
+    console.log(blog);
+    console.log(user);
+}

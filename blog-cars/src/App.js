@@ -13,6 +13,7 @@ import BlogPage from './Components/BlogPage/BlogPage';
 
 import UserGuard from './Components/common/Guard/UserGuard';
 import RouteGuard from './Components/common/Guard/RouteGuard';
+import EditPage from './Components/EditPage/EditPage';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
               </Route>
 
               <Route path='/blog/:id' element={<BlogPage />} />
+              <Route path='/blog/edit/:id' element={<EditPage />} />
 
               <Route element={<UserGuard />}>
 

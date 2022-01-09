@@ -12,12 +12,12 @@
   .logout_btn {
     cursor: pointer;
     margin-left: 5px;
-    color: #FF0000;
+    color: #acd0c0;
     text-align: center;
     padding: 8px 16px;
     text-decoration: none;
     font-size: 17px;
-    border: 1px solid #FF0000;
+    border: 1px solid #acd0c0;
   }
   
   .topnav input[type=text] {
@@ -35,4 +35,7 @@
       border-radius: 5px;
   }
   
+  .logout_btn{
+    background-color: #121212;
+  }
  
