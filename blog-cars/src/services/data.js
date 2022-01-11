@@ -28,7 +28,9 @@ export async function createBlog(data) {
 }
 
 export async function updateBlog(blogId, body){
+
     return await api.put('/classes/Blog/'+ blogId, body);
+
 }
 
 export async function getUserOwnBlogs() {
@@ -48,7 +50,7 @@ export async function joinTheBlog(userId, blogId){
     const user = await userAPI.getUserById(userId);
 
     const membershipList = blog.pendingForMembership;
-    const found = membershipList.includes(m=> m[user.username] === user.objectId);
+    const found = membershipList.includes(m=> m[user.username] === userId);
     
     if(found){
         throw new Error('You are already a member!');
@@ -58,8 +60,7 @@ export async function joinTheBlog(userId, blogId){
     const id = user.objectId;
 
     membershipList.push({[user.username]: id });
-    const body = Object.assign({}, blog);
-console.log(body);
-    await updateBlog(blogId,body);
-    console.log('added');
+   
+    console.log(blog);
+    await updateBlog(blogId, {"pendingForMembership": membershipList});
 }

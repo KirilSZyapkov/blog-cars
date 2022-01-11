@@ -54,7 +54,7 @@ export async function get(url) {
 };
 
 export async function put(url, data) {
-    return await request(host + url, getOptions('put', data));
+    return await request(host + url, getOptions('PUT', data));
 };
 
 export async function post(url, data) {

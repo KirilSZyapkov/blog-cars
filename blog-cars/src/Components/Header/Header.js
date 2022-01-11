@@ -8,18 +8,19 @@ function Header({
     logOut
 }) {
 
-    const userId = sessionStorage.getItem('userId');
+   
     async function search(e) {
         const t = e.target;
         console.log(t.value);
     }
+    
     return (
         <div className={style.topnav}>
             <img className={style.nav_logo} src='/static/nav_logo.jpg' alt='logo' />
             <input type="text" placeholder="Search.." onChange={(e) => search(e)} />
-            {user ?
+            {user.id ?
                 <div>
-                    <Link to={`/profile/${userId}`}>Welcome {user}</Link>
+                    <Link to={`/profile/${user.id}`}>Welcome {user.username}</Link>
 
                     <button onClick={() => { logout(); logOut(); <Navigate to="/" /> }} className={style.logout_btn}>Logout</button>
                 </div>

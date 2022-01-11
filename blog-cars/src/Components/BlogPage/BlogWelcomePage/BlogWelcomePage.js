@@ -11,7 +11,7 @@ function BlogWelcomePage({
 
     async function joinTeam(){
         
-        joinTheBlog(user.objectId, blog.objectId);
+        await joinTheBlog(user.id, blog.objectId);
     }
 
     async function leaveTeam(){

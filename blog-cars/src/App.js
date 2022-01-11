@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -17,15 +17,38 @@ import EditPage from './Components/EditPage/EditPage';
 
 function App() {
 
-  const [user, setUser] = useState(sessionStorage.getItem('userName'));
+  const [user, setUser] = useState({});
+
+  useEffect(()=>{
+    const username = sessionStorage.getItem('userName');
+    const id = sessionStorage.getItem('userId');
+
+    setUser({
+      username,
+      id
+    })
+
+  }, []);
 
   function authorization() {
-    setUser(sessionStorage.getItem('userName'));
+    const username = sessionStorage.getItem('userName');
+    const id = sessionStorage.getItem('userId');
+    const token = {
+      username,
+      id
+    }
+    setUser(old=> Object.assign({}, old, token));
   }
 
   function logOut() {
     sessionStorage.clear();
-    setUser(sessionStorage.getItem('userName'));
+    const id = sessionStorage.getItem('userId');
+    const username = sessionStorage.getItem('userName');
+    const token = {
+      username,
+      id
+    }
+    setUser(old=> Object.assign({}, old, token));
   }
 
   return (
