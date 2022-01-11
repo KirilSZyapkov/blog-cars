@@ -20,35 +20,33 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(()=>{
-    const username = sessionStorage.getItem('userName');
-    const id = sessionStorage.getItem('userId');
-
-    setUser({
-      username,
-      id
-    })
+    
+    setUser(fetchToken());
 
   }, []);
 
   function authorization() {
-    const username = sessionStorage.getItem('userName');
-    const id = sessionStorage.getItem('userId');
-    const token = {
-      username,
-      id
-    }
+    
+    const token = fetchToken();
     setUser(old=> Object.assign({}, old, token));
   }
 
   function logOut() {
     sessionStorage.clear();
+    c
+    const token = fetchToken();
+    setUser(old=> Object.assign({}, old, token));
+  }
+
+  async function fetchToken(){
     const id = sessionStorage.getItem('userId');
     const username = sessionStorage.getItem('userName');
-    const token = {
+    const data = {
       username,
       id
     }
-    setUser(old=> Object.assign({}, old, token));
+
+    return data;
   }
 
   return (
