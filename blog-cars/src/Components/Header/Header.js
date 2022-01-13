@@ -8,7 +8,6 @@ function Header({
     logOut
 }) {
 
-   
     async function search(e) {
         const t = e.target;
         console.log(t.value);
@@ -18,9 +17,9 @@ function Header({
         <div className={style.topnav}>
             <img className={style.nav_logo} src='/static/nav_logo.jpg' alt='logo' />
             <input type="text" placeholder="Search.." onChange={(e) => search(e)} />
-            {user.id ?
+            {user ?
                 <div>
-                    <Link to={`/profile/${user.id}`}>Welcome {user.username}</Link>
+                    <Link to={`/profile/${user.id}`}>Welcome {user}</Link>
 
                     <button onClick={() => { logout(); logOut(); <Navigate to="/" /> }} className={style.logout_btn}>Logout</button>
                 </div>

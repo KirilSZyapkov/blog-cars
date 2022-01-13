@@ -6,7 +6,7 @@ import AuthContext from '../../../contexts/AuthContext';
 function UserGuard() {
     const user = useContext(AuthContext);
 
-    return user.username ? <Navigate to="/" /> : <Outlet />
+    return user ? <Navigate to="/" /> : <Outlet />
 }
 
 export default UserGuard;

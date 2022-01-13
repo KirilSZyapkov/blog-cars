@@ -50,7 +50,8 @@ export async function joinTheBlog(userId, blogId){
     const user = await userAPI.getUserById(userId);
 
     const membershipList = blog.pendingForMembership;
-    const found = membershipList.includes(m=> m[user.username] === userId);
+    
+    const found = membershipList.some(m=> m[user.username] === userId);
     
     if(found){
         throw new Error('You are already a member!');
@@ -61,6 +62,6 @@ export async function joinTheBlog(userId, blogId){
 
     membershipList.push({[user.username]: id });
    
-    console.log(blog);
     await updateBlog(blogId, {"pendingForMembership": membershipList});
+    await userAPI.updateUser(id, {"status": 'pending'});
 }

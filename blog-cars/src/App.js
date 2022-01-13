@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Header from './Components/Header/Header';
 import Sidebar from './Components/Sidebar/Sidebar';
-import HomePage from './Components/HomePage/HomPage';
+import HomePage from './Components/HomePage/HomePage';
 import Create from './Components/Create/Create';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
@@ -17,36 +17,18 @@ import EditPage from './Components/EditPage/EditPage';
 
 function App() {
 
-  const [user, setUser] = useState({});
-
-  useEffect(()=>{
-    
-    setUser(fetchToken());
-
-  }, []);
+  const [user, setUser] = useState(sessionStorage.getItem('userName'));
 
   function authorization() {
     
-    const token = fetchToken();
-    setUser(old=> Object.assign({}, old, token));
+    setUser(sessionStorage.getItem('userName'));
+
   }
 
   function logOut() {
     sessionStorage.clear();
-    c
-    const token = fetchToken();
-    setUser(old=> Object.assign({}, old, token));
-  }
 
-  async function fetchToken(){
-    const id = sessionStorage.getItem('userId');
-    const username = sessionStorage.getItem('userName');
-    const data = {
-      username,
-      id
-    }
-
-    return data;
+    setUser(sessionStorage.getItem('userName'));
   }
 
   return (

@@ -58,3 +58,7 @@ export async function getUserById(id){
     const user = await request(host+`/${id}`, getOptions());
     return user;
 }
+
+export async function updateUser(id, data){
+    return await request(host + `/${id}`, getOptions('put', data));
+}

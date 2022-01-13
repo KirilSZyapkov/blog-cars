@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 
 import {joinTheBlog} from '../../../services/data';
@@ -7,11 +8,20 @@ function BlogWelcomePage({
     blog,
     user
 }) {
-   
 
+    console.log(blog);
+    console.log(user);
+
+    const admin = blog.admin || {};
+    const pendingForMembershipList = blog.pendingForMembership || [];
+
+    const a = pendingForMembershipList.some(m=> m[user.username] === user.objectId);
+    console.log(a);
+      
     async function joinTeam(){
         
-        await joinTheBlog(user.id, blog.objectId);
+        await joinTheBlog(user.objectId, blog.objectId);
+        alert('Join request sended!');
     }
 
     async function leaveTeam(){
@@ -47,10 +57,10 @@ function BlogWelcomePage({
                         <p>{blog.description}</p>
                         <span className={style.details}><p>{blog.members?.length} Members</p></span>
                         <div>
-                            <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link>
-                            <button onClick={joinTeam} className={style.action}>Join team</button>
-                            <a href="#" className={style.action} className={style.invert}>Leave team</a>
-                            Membership pending. <a href="#">Cancel request</a>
+                           { admin.objectId === user.objectId ? <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link> : ''}
+                           { (admin.objectId !== user.objectId && (pendingForMembershipList.some(m=> m[user.username] === user.objectId))) ? <button onClick={joinTeam} className={style.action}>Join team</button> : ''}
+                            {/* <a href="#" className={style.action} className={style.invert}>Leave team</a>
+                            Membership pending. <a href="#">Cancel request</a> */}
                         </div>
                     </div>
                 </header>
