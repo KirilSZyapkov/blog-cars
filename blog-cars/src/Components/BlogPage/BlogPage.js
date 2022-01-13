@@ -4,10 +4,9 @@ import { useParams } from 'react-router-dom';
 import BlogWelcomePage from "./BlogWelcomePage/BlogWelcomePage";
 import BlogChatPage from "./BlogChatPage/BlogChatPage";
 
-import style from './BlogPage.module.css';
-
 import { getBlogById } from '../../services/data';
 import { getUser } from '../../services/userApi';
+
 function BlogPage() {
     const { id } = useParams();
     
@@ -27,9 +26,12 @@ function BlogPage() {
     }, []);
 
 
+    const membershipList = blog.pendingForMembership || [];
+    const found = membershipList.some(m=> m[user.username] === user.objectId);
+    
     return (
         <section>
-            <BlogWelcomePage blog={blog} user={user} />
+            {!found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}     
         </section>
     );
 }

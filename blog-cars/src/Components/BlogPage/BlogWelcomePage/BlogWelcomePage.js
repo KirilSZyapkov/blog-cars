@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {joinTheBlog} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
@@ -9,6 +9,7 @@ function BlogWelcomePage({
     user
 }) {
 
+    const navigation = useNavigate();
     console.log(blog);
     console.log(user);
 
@@ -22,6 +23,7 @@ function BlogWelcomePage({
         
         await joinTheBlog(user.objectId, blog.objectId);
         alert('Join request sended!');
+        navigation('/');
     }
 
     async function leaveTeam(){

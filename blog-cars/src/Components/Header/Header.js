@@ -1,4 +1,4 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import style from './Header.module.css';
 import { logout } from '../../services/data';
@@ -7,6 +7,8 @@ function Header({
     user,
     logOut
 }) {
+
+    const navigation = useNavigate();
 
     async function search(e) {
         const t = e.target;
@@ -21,7 +23,7 @@ function Header({
                 <div>
                     <Link to={`/profile/${user.id}`}>Welcome {user}</Link>
 
-                    <button onClick={() => { logout(); logOut(); <Navigate to="/" /> }} className={style.logout_btn}>Logout</button>
+                    <button onClick={() => { logout(); logOut(); navigation('/') }} className={style.logout_btn}>Logout</button>
                 </div>
                 :
                 <Link to='/login'>Login</Link>
