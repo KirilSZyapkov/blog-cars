@@ -5,21 +5,23 @@ import Members from './MemberItem/Members';
 import PendingMembers from './MemberItem/PendingMembers';
 
 
-import {joinTheBlog} from '../../../services/data';
+import {joinTheBlog, declineRequest} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
 import Notification from '../../common/Notification/Notification'; 
 
 function BlogWelcomePage({
     blog,
-    user
+    user,
+
 }) {
+    
+    const [update, setUpdate] = useState(true);
     const [errorM, setErrorM] = useState(null);
-
+    console.log("1  " + update);
     const navigation = useNavigate();
-
+        
     const pendingForMembershipList = blog.pendingForMembership || [];
     const membersList = blog.members || [];
-
     // const a = pendingForMembershipList.some(m=> m[user.username] === user.objectId);
     // console.log(a);
       
@@ -34,24 +36,22 @@ function BlogWelcomePage({
         }
     }
 
-    async function leaveTeam(){
-
-    }
-
-    async function cancelJoinRequest(){
-        
-    }
-
     async function removeFromMemberFromGroup(){
         alert('Removed!');
     }
 
-    async function approveMembershipRequest(){
+    async function approveMembershipRequest(userId){
         alert('Request approved!');
     }
 
-    async function declineMembershiRequest(){
-        alert('Cancel');
+    async function declineMembershiRequest(userId){
+        
+        await declineRequest(user.objectId, userId, blog.objectId);
+        console.log(!update);
+        const a = !update;
+        setUpdate(a);
+        console.log("after "+update);
+        
     }
 
     setTimeout(() => {
@@ -91,7 +91,11 @@ function BlogWelcomePage({
                     <h3>Membership Requests</h3>
                     <ul className={style.tm_members}>
                        {pendingForMembershipList.length>0 ? pendingForMembershipList.map(m=> <PendingMembers key={Object.values(m)} user={m} declineMembershiFun={declineMembershiRequest} approveMembershipFun={approveMembershipRequest}/>) : 'No request found!'}
-                        
+                       <li>
+                            <p className={style.tm_members_p}>Test</p>
+                            <button className={style.tm_control} className={style.action}>Approve</button>
+                            <button onClick={()=>declineMembershiRequest()} className={style.tm_control} className={style.action}>Decline</button>
+                        </li>
                     </ul>
                 </div>
             </article >

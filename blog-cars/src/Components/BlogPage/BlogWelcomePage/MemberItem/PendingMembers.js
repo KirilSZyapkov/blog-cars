@@ -6,11 +6,12 @@ function PendingMembers({
     declineMembershiFun
 }){
     const userName = Object.keys(user);
+    const userId = Object.values(user);
     return(
         <li>
             <p className={style.tm_members_p}>{userName}</p>
-            <button onClick={()=>approveMembershipFun()} className={style.tm_control} className={style.action}>Approve</button>
-            <button onClick={()=>declineMembershiFun()} className={style.tm_control} className={style.action}>Decline</button>
+            <button onClick={()=>approveMembershipFun(userId[0])} className={style.tm_control} className={style.action}>Approve</button>
+            <button onClick={()=>declineMembershiFun(userId[0])} className={style.tm_control} className={style.action}>Decline</button>
         </li>
     );
 }

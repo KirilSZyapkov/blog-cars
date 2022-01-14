@@ -71,3 +71,26 @@ export async function joinTheBlog(userId, blogId){
     await updateBlog(blogId, {"pendingForMembership": membershipList});
     await userAPI.updateUser(id, {"status": 'pending'});
 }
+
+export async function declineRequest(curUserId, userId, blogId){
+    const blog = await getBlogById(blogId);
+    const user = await userAPI.getUserById(userId);
+
+    const owner = blog.admin;
+    const isAdmin = curUserId === owner.objectId;
+
+    if(!isAdmin){
+        throw new Error('You are not authorised for this action!');
+    }
+
+    const membershipList = blog.pendingForMembership;
+
+    const index = membershipList.findIndex(m => m[user.username] === userId);
+    membershipList.splice(index, 1);
+    
+    const id = user.objectId;
+    
+    // await userAPI.updateUser(id, {"status": 'free'});
+    await updateBlog(blogId, {"pendingForMembership": membershipList});
+
+}

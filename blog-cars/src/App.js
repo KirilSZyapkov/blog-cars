@@ -44,10 +44,10 @@ function App() {
 
               <Route element={<RouteGuard />}>
                 <Route path="/create" element={<Create />} />
+                <Route path='/blog/:id' element={<BlogPage />} />
+                <Route path='/blog/edit/:id' element={<EditPage />} />
               </Route>
 
-              <Route path='/blog/:id' element={<BlogPage />} />
-              <Route path='/blog/edit/:id' element={<EditPage />} />
 
               <Route element={<UserGuard />}>
 
