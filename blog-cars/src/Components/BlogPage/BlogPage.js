@@ -31,7 +31,7 @@ function BlogPage() {
     
     return (
         <section>
-            {!found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}     
+            {found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}     
         </section>
     );
 }

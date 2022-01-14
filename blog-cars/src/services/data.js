@@ -50,8 +50,14 @@ export async function joinTheBlog(userId, blogId){
     const user = await userAPI.getUserById(userId);
 
     const membershipList = blog.pendingForMembership;
+    const owner = blog.admin;
     
     const found = membershipList.some(m=> m[user.username] === userId);
+    const isAdmin = user.objectId === owner.objectId;
+
+    if(isAdmin){
+        throw new Error('You are the Admin, you can`t join your own group!');
+    }
     
     if(found){
         throw new Error('You are already a member!');
