@@ -8,11 +8,14 @@ import { getBlogById } from '../../services/data';
 import { getUser } from '../../services/userApi';
 
 function BlogPage() {
-    const { id } = useParams();
     
     const [blog, setBlog] = useState({});
     const [user, setUser] = useState({});
-    
+    const [pendingForMembership, setPendingForMembershipList] = useState([]);
+    const [membersList, setMembersList] = useState([]);
+    const [change, setChange] = useState(true);
+    const { id } = useParams();
+      
 
     useEffect(() => {
         async function fetch() {
@@ -20,18 +23,24 @@ function BlogPage() {
             const curUser = await getUser();
             setBlog(blogData);
             setUser(curUser);
+            setPendingForMembershipList(blogData.pendingForMembership);
+            setMembersList(blogData.members);
         }
-
+        
         fetch();
-    }, []);
+                
+    }, [change]);   
 
-
-    const membershipList = blog.pendingForMembership || [];
-    const found = membershipList.some(m=> m[user.username] === user.objectId);
+    function update(){
+        console.log("before "+change);
+        
+        setChange(!change);
+    }
+    console.log("after "+change);
     
     return (
         <section>
-            <BlogWelcomePage blog={blog} user={user} />
+            <BlogWelcomePage refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />
             {/* {!found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}      */}
         </section>
     );

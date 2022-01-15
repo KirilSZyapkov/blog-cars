@@ -11,19 +11,15 @@ import Notification from '../../common/Notification/Notification';
 
 function BlogWelcomePage({
     blog,
-    user,
-
+    user,    
+    pendings,
+    members,
+    refresh
 }) {
-    
-    const [update, setUpdate] = useState(true);
+
     const [errorM, setErrorM] = useState(null);
-    console.log("1  " + update);
+    
     const navigation = useNavigate();
-        
-    const pendingForMembershipList = blog.pendingForMembership || [];
-    const membersList = blog.members || [];
-    // const a = pendingForMembershipList.some(m=> m[user.username] === user.objectId);
-    // console.log(a);
       
     async function joinTeam(){
         try{
@@ -47,13 +43,10 @@ function BlogWelcomePage({
     async function declineMembershiRequest(userId){
         
         await declineRequest(user.objectId, userId, blog.objectId);
-        console.log(!update);
-        const a = !update;
-        setUpdate(a);
-        console.log("after "+update);
-        
+        refresh();
+              
     }
-
+    
     setTimeout(() => {
         setErrorM(null);
     }, 8000);
@@ -83,19 +76,14 @@ function BlogWelcomePage({
                     <h3>Members</h3>
                     <ul className={style.tm_members}>
                         <li><p>Admin: <Link to={`/admin/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
-                        {!membersList.length > 0 ? membersList.map(m => <Members user={m} removeFromTeamFunc={removeFromMemberFromGroup} />) : 'No body joined the group yet!'}
+                        {members.length > 0 ? members.map(m => <Members user={m} removeFromTeamFunc={removeFromMemberFromGroup} />) : 'No body joined the group yet!'}
                         
                     </ul>
                 </div>
                 <div className={style.pad_large}>
                     <h3>Membership Requests</h3>
                     <ul className={style.tm_members}>
-                       {pendingForMembershipList.length>0 ? pendingForMembershipList.map(m=> <PendingMembers key={Object.values(m)} user={m} declineMembershiFun={declineMembershiRequest} approveMembershipFun={approveMembershipRequest}/>) : 'No request found!'}
-                       <li>
-                            <p className={style.tm_members_p}>Test</p>
-                            <button className={style.tm_control} className={style.action}>Approve</button>
-                            <button onClick={()=>declineMembershiRequest()} className={style.tm_control} className={style.action}>Decline</button>
-                        </li>
+                       {pendings.length>0 ? pendings.map(m=> <PendingMembers key={Object.values(m)} user={m} declineMembershiFun={declineMembershiRequest} approveMembershipFun={approveMembershipRequest}/>) : 'No request found!'}
                     </ul>
                 </div>
             </article >
