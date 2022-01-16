@@ -155,6 +155,8 @@ export async function removeMember(curUserId, memberId,curBlogId){
     memberList.splice(memberIndex, 1);
     blogList.splice(blognIndex, 1);
 
-    console.log(memberIndex);
-    console.log(blognIndex);
+    await updateBlog(curBlogId, {"members": memberList});
+    await userAPI.updateUser(memberId, {"blogList": blogList});
+
+  
 }

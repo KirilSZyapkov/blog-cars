@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import style from './Create.module.css';
 
@@ -31,7 +31,7 @@ function Create() {
             navigation('/');
 
         } catch (err) {
-            console.log(err);
+            
             setErrorM(err.message);
 
         };
@@ -44,6 +44,7 @@ function Create() {
 
     return (
         <form onSubmit={createNewBlog} className={style.form}>
+            
             <div className={style.container}>
                 <h1>Create New Blog</h1>
                 {errorM && <Notification message={errorM} />}
@@ -58,7 +59,9 @@ function Create() {
                 <input type="text" placeholder="Enter Description" name="description" id="description" />
 
                 <button type="submit" className={style.createbtn}>Create</button>
+                <Link to="/"><button type="submit" className={style.createbtn}>Back</button></Link>
             </div>
+           
         </form>
     );
 }

@@ -15,7 +15,8 @@ function BlogWelcomePage({
     pendings,
     members,
     refresh,
-    found
+    found,
+    changePage
 }) {
 
     const [errorM, setErrorM] = useState(null);
@@ -37,9 +38,15 @@ function BlogWelcomePage({
     }
 
     async function removeMemberFromGroup(memberId){
-       console.log(memberId);
+       try{
 
-       await removeMember(user.objectId, memberId, blog.objectId);
+           await removeMember(user.objectId, memberId, blog.objectId);
+           alert('Member removed successfully!');
+           refresh();
+       } catch(err){
+           setErrorM(err.message);
+       }
+
     }
 
     async function approveMembershipRequest(userId){
@@ -70,6 +77,7 @@ function BlogWelcomePage({
 
     return (
         <section className={style.team_home}>
+            {blog.blogName ?
             <article className={style.layout}>
                 <header className={style.header}>
                     <div className={style.team_logo}>
@@ -82,7 +90,10 @@ function BlogWelcomePage({
                         <span className={style.details}><p>{blog.members?.length} Members</p></span>
                         <div>
                            {isAdmin 
-                           ? <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link> 
+                           ? <>
+                                <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit blog</Link>
+                                <button onClick={()=>changePage()} className={style.action}>Chat</button>
+                             </> 
                            : <>{ found ?
                             '':
                             <button onClick={joinTeam} className={style.action}>Join team</button>}</>
@@ -111,6 +122,7 @@ function BlogWelcomePage({
                 </div>
                 : ""}
             </article >
+            : <h1>Loading...</h1>}
         </section >
     );
 }

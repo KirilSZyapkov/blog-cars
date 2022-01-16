@@ -14,6 +14,7 @@ function BlogPage() {
     const [pendingForMembership, setPendingForMembershipList] = useState([]);
     const [membersList, setMembersList] = useState([]);
     const [change, setChange] = useState(true);
+    const [curPage, setCurPage] = useState('welcome');
     const { id } = useParams();
       
 
@@ -36,13 +37,34 @@ function BlogPage() {
         setChange(!change);
     }
 
+    function changePage(){
+        console.log('chat');
+        let page = curPage;
+        if(page === 'welcome'){
+            setCurPage('chat');
+        } else if(page === 'chat'){
+            setCurPage('welcome');
+        }
+    }
+
     const membershipList = blog.pendingForMembership || [];
     const found = membershipList.some(m=> m[user.username] === user.objectId);
-    
+    const owner = blog.admin || {};
+    const isAdmin = user.objectId === owner.objectId;
+
     return (
         <section>
-            <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />
-            {/* {!found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}      */}
+            { isAdmin ? 
+                <>
+                    {curPage === 'welcome' ? <BlogWelcomePage changePage={changePage} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} /> : <BlogChatPage blog={blog} user={user} />}
+                </>
+                
+                :
+                <>
+                    {!found ? <BlogChatPage changePage={changePage} blog={blog} user={user} /> : <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />}
+                </>
+            }
+            
         </section>
     );
 }
