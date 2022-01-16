@@ -5,7 +5,7 @@ import Members from './MemberItem/Members';
 import PendingMembers from './MemberItem/PendingMembers';
 
 
-import {joinTheBlog, declineRequest, approveRequest} from '../../../services/data';
+import {joinTheBlog, declineRequest, approveRequest, removeMember} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
 import Notification from '../../common/Notification/Notification'; 
 
@@ -28,8 +28,8 @@ function BlogWelcomePage({
     async function joinTeam(){
         try{
 
-            alert('Join request sended!');
             await joinTheBlog(user.objectId, blog.objectId);
+            alert('Join request sended!');
             navigation('/');
         } catch(err){
             setErrorM(err.message);
@@ -37,7 +37,9 @@ function BlogWelcomePage({
     }
 
     async function removeMemberFromGroup(memberId){
-        alert('Removed!');
+       console.log(memberId);
+
+       await removeMember(user.objectId, memberId, blog.objectId);
     }
 
     async function approveMembershipRequest(userId){
@@ -96,7 +98,7 @@ function BlogWelcomePage({
                     <h3>Members</h3>
                     <ul className={style.tm_members}>
                         <li><p>Admin: <Link to={`/admin/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
-                        {members.length > 0 ? members.map(m => <Members key={Object.values(m)} user={m} removeFromTeamFunc={removeMemberFromGroup} />) : 'No body joined the group yet!'}
+                        {members.length > 0 ? members.map(m => <Members isAdmin={isAdmin} key={Object.values(m)} user={m} removeFromTeamFunc={removeMemberFromGroup} />) : 'No body joined the group yet!'}
                         
                     </ul>
                 </div>

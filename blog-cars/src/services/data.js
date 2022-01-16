@@ -136,5 +136,25 @@ export async function approveRequest(curUserId, userId, blogId){
 }
 
 export async function removeMember(curUserId, memberId,curBlogId){
+    const blog = await getBlogById(curBlogId);
+    const user = await userAPI.getUserById(memberId);
 
+    const owner = blog.admin;
+    const isAdmin = curUserId === owner.objectId;
+
+    if(!isAdmin){
+        throw new Error('You are not authorised for this action!');
+    }
+
+    const memberList = blog.members;
+    const blogList = user.blogList;
+
+    const memberIndex = memberList.findIndex(m=>m[user.username] === memberId);
+    const blognIndex = blogList.findIndex(b=>b[blog.blogName] === curBlogId);
+
+    memberList.splice(memberIndex, 1);
+    blogList.splice(blognIndex, 1);
+
+    console.log(memberIndex);
+    console.log(blognIndex);
 }
