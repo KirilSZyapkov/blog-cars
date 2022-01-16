@@ -16,15 +16,15 @@ function BlogWelcomePage({
     members,
     refresh,
     found,
-    changePage
+    changePage,
+    isAdmin,
 }) {
 
     const [errorM, setErrorM] = useState(null);
     
     const navigation = useNavigate();
 
-    const owner = blog.admin || {};
-    const isAdmin = user.objectId === owner.objectId;
+    const isPending = pendings.some(m=> m[user.username] === user.objectId);
      
     async function joinTeam(){
         try{
@@ -95,12 +95,13 @@ function BlogWelcomePage({
                                 <button onClick={()=>changePage()} className={style.action}>Chat</button>
                              </> 
                            : <>{ found ?
-                            '':
-                            <button onClick={joinTeam} className={style.action}>Join team</button>}</>
+                                <a href="#" className={style.action} className={style.invert}>Leave team</a>
+                            :
+                            <>
+                            {isPending ? <> Membership pending. <a href="#">Cancel request</a> </>: <button onClick={joinTeam} className={style.action}>Join team</button>}</> }
+                            </>
+                            
                            }
-                           
-                            {/* <a href="#" className={style.action} className={style.invert}>Leave team</a>
-                            Membership pending. <a href="#">Cancel request</a> */}
                         </div>
                     </div>
                     {errorM && <Notification message={errorM} />}

@@ -49,21 +49,25 @@ function BlogPage() {
         }
     }
 
-    const membershipList = blog.pendingForMembership || [];
-    const found = membershipList.some(m=> m[user.username] === user.objectId);
+    
+    const found = membersList.some(m=> m[user.username] === user.objectId);
     const owner = blog.admin || {};
     const isAdmin = user.objectId === owner.objectId;
+    const status = user.status;
 
     return (
         <section>
             { isAdmin ? 
                 <>
-                    {curPage === 'welcome' ? <BlogWelcomePage changePage={changePage} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} /> : <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} />}
+                    {curPage === 'welcome' ? <BlogWelcomePage isAdmin={isAdmin} changePage={changePage} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} /> : <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} />}
                 </>
                 
                 :
                 <>
-                    {!found ? <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} /> : <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />}
+                    {found ? 
+                    <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} /> 
+                
+                     : <BlogWelcomePage isAdmin={isAdmin} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />}
                 </>
             }
             

@@ -90,8 +90,8 @@ export async function declineRequest(curUserId, userId, blogId){
     
     const id = user.objectId;
     
-    // await userAPI.updateUser(id, {"status": 'free'});
     await updateBlog(blogId, {"pendingForMembership": membershipList});
+    await userAPI.updateUser(id, {"status": 'free'});
 
 }
 
@@ -132,6 +132,7 @@ export async function approveRequest(curUserId, userId, blogId){
     await updateBlog(blogId, {"pendingForMembership": membershipList});
     await updateBlog(blogId, {"members": newMember});
     await userAPI.updateUser(userId, {"blogList": newBlog});
+    await userAPI.updateUser(userId, {"status": 'member'});
 
 }
 
@@ -157,6 +158,6 @@ export async function removeMember(curUserId, memberId,curBlogId){
 
     await updateBlog(curBlogId, {"members": memberList});
     await userAPI.updateUser(memberId, {"blogList": blogList});
-
+    await userAPI.updateUser(memberId, {"status": 'free'});
   
 }
