@@ -13,6 +13,7 @@ function BlogPage() {
     const [user, setUser] = useState({});
     const [pendingForMembership, setPendingForMembershipList] = useState([]);
     const [membersList, setMembersList] = useState([]);
+    const [chatList, setChatList] = useState([]);
     const [change, setChange] = useState(true);
     const [curPage, setCurPage] = useState('welcome');
     const { id } = useParams();
@@ -26,6 +27,7 @@ function BlogPage() {
             setUser(curUser);
             setPendingForMembershipList(blogData.pendingForMembership);
             setMembersList(blogData.members);
+            setChatList(blogData.conversations);
         }
         
         fetch();
@@ -56,12 +58,12 @@ function BlogPage() {
         <section>
             { isAdmin ? 
                 <>
-                    {curPage === 'welcome' ? <BlogWelcomePage changePage={changePage} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} /> : <BlogChatPage blog={blog} user={user} />}
+                    {curPage === 'welcome' ? <BlogWelcomePage changePage={changePage} found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} /> : <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} />}
                 </>
                 
                 :
                 <>
-                    {!found ? <BlogChatPage changePage={changePage} blog={blog} user={user} /> : <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />}
+                    {!found ? <BlogChatPage isAdmin={isAdmin} chatList={chatList} refresh={update} changePage={changePage} blog={blog} user={user} /> : <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />}
                 </>
             }
             
