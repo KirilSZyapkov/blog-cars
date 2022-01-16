@@ -60,5 +60,7 @@ export async function getUserById(id){
 }
 
 export async function updateUser(id, data){
+    
     return await request(host + `/${id}`, getOptions('put', data));
+    
 }

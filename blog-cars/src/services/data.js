@@ -60,7 +60,7 @@ export async function joinTheBlog(userId, blogId){
     }
     
     if(found){
-        throw new Error('You are already a member!');
+        throw new Error('You are already send a request!');
     }
 
     
@@ -92,5 +92,49 @@ export async function declineRequest(curUserId, userId, blogId){
     
     // await userAPI.updateUser(id, {"status": 'free'});
     await updateBlog(blogId, {"pendingForMembership": membershipList});
+
+}
+
+export async function approveRequest(curUserId, userId, blogId){
+    const blog = await getBlogById(blogId);
+    const user = await userAPI.getUserById(userId);
+
+    const owner = blog.admin;
+    const isAdmin = curUserId === owner.objectId;
+
+    if(!isAdmin){
+        throw new Error('You are not authorised for this action!');
+    }
+    const membersList = blog.members;
+    const found = membersList.some(m=> m[user.username] === userId);
+    
+    if(found){
+        throw new Error('You are already member of the group!');
+    }
+
+    const membershipList = blog.pendingForMembership;
+
+
+    const index = membershipList.findIndex(m => m[user.username] === userId);
+    const member = membershipList.splice(index, 1);
+    const m = member[0];
+
+    const newMember = blog.members;
+    newMember.push(m);
+
+    const b = {
+        [blog.blogName]:blog.objectId
+    }
+
+    const newBlog = user.blogList;
+    newBlog.push(b);
+
+    await updateBlog(blogId, {"pendingForMembership": membershipList});
+    await updateBlog(blogId, {"members": newMember});
+    await userAPI.updateUser(userId, {"blogList": newBlog});
+
+}
+
+export async function removeMember(curUserId, memberId,curBlogId){
 
 }

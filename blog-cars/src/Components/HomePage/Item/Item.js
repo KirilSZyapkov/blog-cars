@@ -18,7 +18,7 @@ function Item({
                     <p className={style.title}>Members {members.length}</p>
                     <p>{description}</p>
 
-                    <p><button className={style.button}> <Link to={`/blog/${objectId}`}>See Details</Link></button></p>
+                    <Link to={`/blog/${objectId}`}><p><button className={style.button}> See Details</button></p></Link>
                 </div>
             </div>
         </div>

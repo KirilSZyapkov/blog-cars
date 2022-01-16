@@ -5,7 +5,7 @@ import Members from './MemberItem/Members';
 import PendingMembers from './MemberItem/PendingMembers';
 
 
-import {joinTheBlog, declineRequest} from '../../../services/data';
+import {joinTheBlog, declineRequest, approveRequest} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
 import Notification from '../../common/Notification/Notification'; 
 
@@ -14,36 +14,51 @@ function BlogWelcomePage({
     user,    
     pendings,
     members,
-    refresh
+    refresh,
+    found
 }) {
 
     const [errorM, setErrorM] = useState(null);
     
     const navigation = useNavigate();
-      
+
+    const owner = blog.admin || {};
+    const isAdmin = user.objectId === owner.objectId;
+     
     async function joinTeam(){
         try{
 
-            await joinTheBlog(user.objectId, blog.objectId);
             alert('Join request sended!');
+            await joinTheBlog(user.objectId, blog.objectId);
             navigation('/');
         } catch(err){
             setErrorM(err.message);
         }
     }
 
-    async function removeFromMemberFromGroup(){
+    async function removeMemberFromGroup(memberId){
         alert('Removed!');
     }
 
     async function approveMembershipRequest(userId){
-        alert('Request approved!');
+        try{
+
+            await approveRequest(user.objectId, userId, blog.objectId);
+            refresh();
+        } catch(err){
+            setErrorM(err.message);
+        }
     }
 
     async function declineMembershiRequest(userId){
         
-        await declineRequest(user.objectId, userId, blog.objectId);
-        refresh();
+        try{
+
+            await declineRequest(user.objectId, userId, blog.objectId);
+            refresh();
+        } catch(err){
+            setErrorM(err.message);
+        }
               
     }
     
@@ -64,8 +79,13 @@ function BlogWelcomePage({
                         <p>{blog.description}</p>
                         <span className={style.details}><p>{blog.members?.length} Members</p></span>
                         <div>
-                           <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link>
-                           <button onClick={joinTeam} className={style.action}>Join team</button>
+                           {isAdmin 
+                           ? <Link to={`/blog/edit/${blog.objectId}`} className={style.action}>Edit team</Link> 
+                           : <>{ found ?
+                            '':
+                            <button onClick={joinTeam} className={style.action}>Join team</button>}</>
+                           }
+                           
                             {/* <a href="#" className={style.action} className={style.invert}>Leave team</a>
                             Membership pending. <a href="#">Cancel request</a> */}
                         </div>
@@ -76,16 +96,18 @@ function BlogWelcomePage({
                     <h3>Members</h3>
                     <ul className={style.tm_members}>
                         <li><p>Admin: <Link to={`/admin/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
-                        {members.length > 0 ? members.map(m => <Members user={m} removeFromTeamFunc={removeFromMemberFromGroup} />) : 'No body joined the group yet!'}
+                        {members.length > 0 ? members.map(m => <Members key={Object.values(m)} user={m} removeFromTeamFunc={removeMemberFromGroup} />) : 'No body joined the group yet!'}
                         
                     </ul>
                 </div>
+                {isAdmin ? 
                 <div className={style.pad_large}>
                     <h3>Membership Requests</h3>
                     <ul className={style.tm_members}>
                        {pendings.length>0 ? pendings.map(m=> <PendingMembers key={Object.values(m)} user={m} declineMembershiFun={declineMembershiRequest} approveMembershipFun={approveMembershipRequest}/>) : 'No request found!'}
                     </ul>
                 </div>
+                : ""}
             </article >
         </section >
     );

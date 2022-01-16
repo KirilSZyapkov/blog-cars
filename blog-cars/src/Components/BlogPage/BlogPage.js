@@ -32,15 +32,16 @@ function BlogPage() {
     }, [change]);   
 
     function update(){
-        console.log("before "+change);
-        
+       
         setChange(!change);
     }
-    console.log("after "+change);
+
+    const membershipList = blog.pendingForMembership || [];
+    const found = membershipList.some(m=> m[user.username] === user.objectId);
     
     return (
         <section>
-            <BlogWelcomePage refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />
+            <BlogWelcomePage found={found} refresh={update} members={membersList} pendings={pendingForMembership} blog={blog} user={user} />
             {/* {!found ? <BlogChatPage blog={blog} user={user} /> : <BlogWelcomePage blog={blog} user={user} />}      */}
         </section>
     );
