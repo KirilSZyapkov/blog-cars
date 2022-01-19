@@ -40,7 +40,7 @@ function BlogPage() {
     }
 
     function changePage(){
-        console.log('chat');
+        
         let page = curPage;
         if(page === 'welcome'){
             setCurPage('chat');

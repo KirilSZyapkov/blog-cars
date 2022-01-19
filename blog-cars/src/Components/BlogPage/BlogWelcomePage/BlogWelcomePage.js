@@ -5,7 +5,7 @@ import Members from './MemberItem/Members';
 import PendingMembers from './MemberItem/PendingMembers';
 
 
-import {joinTheBlog, declineRequest, approveRequest, removeMember} from '../../../services/data';
+import {joinTheBlog, declineRequest, approveRequest, removeMember, cancelRequest} from '../../../services/data';
 import style from './BlogWelcomePage.module.css';
 import Notification from '../../common/Notification/Notification'; 
 
@@ -53,6 +53,7 @@ function BlogWelcomePage({
         try{
 
             await approveRequest(user.objectId, userId, blog.objectId);
+            alert('Request approved!');
             refresh();
         } catch(err){
             setErrorM(err.message);
@@ -64,11 +65,23 @@ function BlogWelcomePage({
         try{
 
             await declineRequest(user.objectId, userId, blog.objectId);
+            alert('Request decline!');
             refresh();
         } catch(err){
             setErrorM(err.message);
         }
               
+    }
+
+    async function cancelJoinRequest(){
+
+        try{
+            await cancelRequest(user.objectId, blog.objectId);
+            alert('You cancel your request successfully!');
+            refresh();
+        } catch(err){
+            setErrorM(err.message);
+        }
     }
     
     setTimeout(() => {
@@ -98,7 +111,7 @@ function BlogWelcomePage({
                                 <a href="#" className={style.action} className={style.invert}>Leave team</a>
                             :
                             <>
-                            {isPending ? <> Membership pending. <a href="#">Cancel request</a> </>: <button onClick={joinTeam} className={style.action}>Join team</button>}</> }
+                            {isPending ? <> Membership pending. <a onClick={()=>cancelJoinRequest()} href="#">Cancel request</a> </>: <button onClick={joinTeam} className={style.action}>Join team</button>}</> }
                             </>
                             
                            }

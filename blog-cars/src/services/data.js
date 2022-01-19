@@ -161,3 +161,23 @@ export async function removeMember(curUserId, memberId,curBlogId){
     await userAPI.updateUser(memberId, {"status": 'free'});
   
 }
+
+export async function cancelRequest(userId, blogId){
+
+    const blog = await getBlogById(blogId);
+    const user = await userAPI.getUserById(userId);
+    const owner = blog.admin;
+    const isAdmin = userId === owner.objectId;
+
+    if(isAdmin){
+        throw new Error('You are the Admin, you can`t cancel!');   
+    }
+
+    const membershipList = blog.pendingForMembership;
+
+    const memberIndex = membershipList.findIndex(m=>m[user.username] === userId);
+    membershipList.splice(memberIndex, 1);
+
+    await updateBlog(blogId, {"pendingForMembership": membershipList});
+
+}
