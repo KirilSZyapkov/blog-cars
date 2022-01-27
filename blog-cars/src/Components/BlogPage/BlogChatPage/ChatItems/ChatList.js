@@ -8,13 +8,7 @@ function ChatList({
 }){
     return(
         <section className={style.chat_list_container}>
-           <ChatMessage />
-           <ChatMessage />
-           <ChatMessage />
-           <ChatMessage />
-           <ChatMessage />
-           <ChatMessage />
-           <ChatMessage />
+           {chatList.length > 0 ? chatList.map((m, i)=> < ChatMessage message={m} key={i}/>) : <h1>Write the first post...</h1>}
         </section>
     );
 }
