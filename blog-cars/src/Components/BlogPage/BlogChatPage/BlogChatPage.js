@@ -4,6 +4,8 @@ import ChatList from "./ChatItems/ChatList";
 
 import style from './BlogChatPage.module.css';
 import { creatNewBlogPost } from '../../../services/data';
+import Notification from '../../common/Notification/Notification';
+import validate from '../../common/validations/validate';
 
 function BlogChatPage({
     chatList,
@@ -21,23 +23,30 @@ function BlogChatPage({
 
         const target = e.target;
         const message = target.message.value;
+        const timeAndDay = new Date().toDateString();
 
         try {
-
-            await creatNewBlogPost(blog.objectId, user.username, message);
+            validate("chat", { message });
+            await creatNewBlogPost(blog?.objectId, user?.username, message, timeAndDay);
             target.message.value = '';
             refresh();
-            
+
         } catch (err) {
             setErrorM(err.message);
-            alert(errorM);
+
         }
 
     }
 
+    setTimeout(() => {
+        setErrorM(null);
+    }, 8000);
+
     return (
         <section className={style.chat_container}>
             <ChatList chatList={chatList} />
+            {errorM && <Notification message={errorM} />}
+
             <form onSubmit={addChat} className={style.chat_form}>
                 <input type="text" placeholder="Enter message" name="message" id="message" />
 

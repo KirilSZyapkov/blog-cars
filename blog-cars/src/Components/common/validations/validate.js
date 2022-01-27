@@ -5,6 +5,7 @@ function validate(action, data) {
     const blogName = data.blogName;
     const imgUrl = data.imgUrl;
     const description = data.description;
+    const message = data.message;
 
     if (action === 'register') {
 
@@ -39,6 +40,10 @@ function validate(action, data) {
         if (description.length > 51){
             throw new Error('The description can be max 50 charecters!');
         };
+    } else if (action === 'chat'){
+        if( message === ''){
+            throw new Error('Please write a message!');
+        }
     }
 }
 

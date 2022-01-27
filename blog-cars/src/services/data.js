@@ -182,12 +182,15 @@ export async function cancelRequest(userId, blogId) {
 
 }
 
-export async function creatNewBlogPost(blogId, userName, message) {
+export async function creatNewBlogPost(blogId, userName, message, timeAndDay) {
 
     const blog = await getBlogById(blogId);
 
     const conversations = blog.conversations;
-    conversations.push({ [userName]: message });
+    conversations.push({ 
+        [userName]: message,
+        'time': timeAndDay
+     });
 
     await updateBlog(blogId, { "conversations": conversations });
 

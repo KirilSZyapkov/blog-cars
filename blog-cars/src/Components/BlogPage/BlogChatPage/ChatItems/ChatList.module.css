@@ -18,3 +18,19 @@
 
 }
 
+.chat_time{
+    font-size: 11px;
+    color: rgb(82, 80, 80);
+    margin-top: 0px;
+    margin-bottom: 20px;
+    
+}
+
+.chat_h3,
+.chat_p{
+    margin: 5px 0px;
+}
+
+.chat_p{
+    padding-left: 15px;
+}
