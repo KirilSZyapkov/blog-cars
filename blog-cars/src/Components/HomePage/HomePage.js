@@ -19,8 +19,6 @@ function HomePage() {
         fetch();
     }, [])
 
-    console.log(data);
-
     return (
         <section className={style.container}>
             {data.length !== 0 ? data.map(d => <Item key={d.objectId} {...d} />) : <h1>Loading...</h1>}

@@ -1,8 +1,4 @@
-
-import { Link } from 'react-router-dom';
-
 import style from '../ChatList.module.css';
-
 
 function ChatMessage({
     message

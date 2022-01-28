@@ -14,6 +14,7 @@ import BlogPage from './Components/BlogPage/BlogPage';
 import UserGuard from './Components/common/Guard/UserGuard';
 import RouteGuard from './Components/common/Guard/RouteGuard';
 import EditPage from './Components/EditPage/EditPage';
+import MyBlogs from './Components/MyBlogs/MyBlogs';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/create" element={<Create />} />
                 <Route path='/blog/:id' element={<BlogPage />} />
                 <Route path='/blog/edit/:id' element={<EditPage />} />
+                <Route path='/my-blogs' element={<MyBlogs />} />
               </Route>
 
 
