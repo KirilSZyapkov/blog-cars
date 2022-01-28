@@ -123,7 +123,9 @@ export async function approveRequest(curUserId, userId, blogId) {
     newMember.push(m);
 
     const b = {
-        [blog.blogName]: blog.objectId
+        "blog": [blog.blogName, blog.objectId],
+        "logo": blog.imgUrl,
+        "admin": [owner.username, owner.objectId]
     }
 
     const newBlog = user.blogList;

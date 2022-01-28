@@ -14,9 +14,9 @@ function MyBlogs() {
             const respons = await getUserOwnBlogs();
             const myOwnBlogs = respons.results;
             setMyBlogs(myOwnBlogs);
+            setIsFetching(!isFetching);
         }
         fetch();
-        setIsFetching(!isFetching);
     }, []);
 
     console.log(myBlogs);
