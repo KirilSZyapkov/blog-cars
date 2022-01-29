@@ -153,7 +153,7 @@ export async function removeMember(curUserId, memberId, curBlogId) {
     const blogList = user.blogList;
 
     const memberIndex = memberList.findIndex(m => m[user.username] === memberId);
-    const blognIndex = blogList.findIndex(b => b[blog.blogName] === curBlogId);
+    const blognIndex = blogList.findIndex(b => b.blog[1] === curBlogId);
 
     memberList.splice(memberIndex, 1);
     blogList.splice(blognIndex, 1);
@@ -196,4 +196,21 @@ export async function creatNewBlogPost(blogId, userName, message, timeAndDay) {
 
     await updateBlog(blogId, { "conversations": conversations });
 
+}
+
+export async function leaveTheBlog(userId, blogId){
+    const blog = await getBlogById(blogId);
+    const user = await userAPI.getUserById(userId);
+
+    const memberList = blog.members;
+    const blogList = user.blogList;
+
+    const memberIndex = memberList.findIndex(m => m[user.username] === userId);
+    const blognIndex = blogList.findIndex(b => b.blog[1] === blogId);
+
+    memberList.splice(memberIndex, 1);
+    blogList.splice(blognIndex, 1);
+
+    await updateBlog(blogId, { "members": memberList });
+    await userAPI.updateUser(userId, { "blogList": blogList });
 }

@@ -7,21 +7,25 @@ import { getUser } from '../../services/userApi';
 function Groups() {
 
     const [groups, setGroups] = useState([]);
+    const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
         async function fetch() {
             const respons = await getUser();
-            setGroups(respons);
+            const list = respons.blogList;
+            setGroups(list);
         };
         fetch();
 
-    }, []);
+    }, [refresh]);
 
-    console.log(groups);
+    function refreshPage() {
+        setRefresh(!refresh);
+    };
 
     return (
         <section className={style.container}>
-            {/* {data.length !== 0 ? data.map(d => <GroupItem key={d.objectId} {...d} />) : <h1>Loading...</h1>} */}
+            {groups.length !== 0 ? groups.map(g => <GroupItem refreshPage={refreshPage} key={g.admin[1]} {...g} />) : <h1>Loading...</h1>}
         </section>
     );
 }

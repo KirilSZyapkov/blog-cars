@@ -19,8 +19,6 @@ function MyBlogs() {
         fetch();
     }, []);
 
-    console.log(myBlogs);
-
     return (
         <section className={style.container}>
             {isFetching ? <h1>Loading...</h1>
