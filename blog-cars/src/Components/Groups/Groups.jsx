@@ -24,9 +24,12 @@ function Groups() {
     };
 
     return (
-        <section className={style.container}>
-            {groups.length !== 0 ? groups.map(g => <GroupItem refreshPage={refreshPage} key={g.admin[1]} {...g} />) : <h1>Loading...</h1>}
-        </section>
+        <div>
+            
+            <section className={style.container}>
+                {groups.length !== 0 ? groups.map(g => <GroupItem refreshPage={refreshPage} key={g.blog[1]} {...g} />) : <h1>Loading...</h1>}
+            </section>
+        </div>
     );
 }
 

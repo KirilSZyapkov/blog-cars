@@ -14,7 +14,7 @@ function Sidebar() {
             <footer className={style.sidebar_footer}>
                 <div className={style.sidebar_footer_content}>
                 <Link to="/contact-us">Contact Us</Link>
-                <p>All rights reserved</p>
+                <p>All rights reserved created by Kiril</p>
 
                 </div>
             </footer>

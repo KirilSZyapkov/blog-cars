@@ -1,0 +1,20 @@
+.profile_container{
+    /* border: 1px solid red; */
+    width: 61%;
+    margin: auto;
+    margin-top: 155px;
+    position: relative;
+    padding-top: 100px;
+}
+
+.profile_picture{
+    width: 250px;
+    border-radius: 300px;
+    
+}
+
+.profile_picture_container{
+    position: absolute;
+    top: -20%;
+    left: 33%;
+}

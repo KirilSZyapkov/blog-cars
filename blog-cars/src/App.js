@@ -16,6 +16,7 @@ import RouteGuard from './Components/common/Guard/RouteGuard';
 import EditPage from './Components/EditPage/EditPage';
 import MyBlogs from './Components/MyBlogs/MyBlogs';
 import Groups from './Components/Groups/Groups';
+import Profile from './Components/Profile/Profile';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
                 <Route path='/blog/edit/:id' element={<EditPage />} />
                 <Route path='/my-blogs' element={<MyBlogs />} />
                 <Route path='/groups' element={<Groups />} />
+                <Route path='/profile/:id' element={<Profile />} />
               </Route>
 
 
