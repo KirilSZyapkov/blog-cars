@@ -2,7 +2,7 @@
     /* border: 1px solid red; */
     width: 61%;
     margin: auto;
-    margin-top: 155px;
+    margin-top: 175px;
     position: relative;
     padding-top: 100px;
 }
@@ -15,6 +15,6 @@
 
 .profile_picture_container{
     position: absolute;
-    top: -20%;
+    top: -17%;
     left: 33%;
 }
