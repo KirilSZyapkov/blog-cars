@@ -1,17 +1,18 @@
 import style from './ProfileForm.module.css';
 
-function ProfileForm({ 
-    saveProfile 
-
+function ProfileForm({
+    saveProfile,
+    setIsProfile,
+    isProfile,
+    user
 }) {
+
+    const myInfo = user?.userInfo;
+
     return (
         <div className={style.profile_container}>
             <div className={style.profile_row}>
-                <div className={style.profile_header}>
-                    <div className={style.profile_picture_container}>
-                        <img className={style.profile_picture} src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="logo" />
-                    </div>
-                </div>
+                
                 <div className={style.profile_form_container}>
                     <div className={style.profil_main}>
 
@@ -20,39 +21,40 @@ function ProfileForm({
 
                             <div className="col-md-6">
                                 <label className="labels">Name</label>
-                                <input name='name' type="text" className={style.form_input} placeholder="first name" defaultValue="" />
+                                <input name='name' type="text" className={style.form_input} placeholder="enter name" defaultValue={myInfo?.name} />
                             </div>
 
                             <div className="col-md-6">
                                 <label className="labels">Surname</label>
-                                <input name='surname' type="text" className={style.form_input} defaultValue="" placeholder="surname" />
+                                <input name='surname' type="text" className={style.form_input} defaultValue={myInfo?.surname} placeholder="enter surname" />
                             </div>
                             <div className="col-md-6">
                                 <label className="labels">Profile picture</label>
-                                <input name='profilePicture' type="text" className={style.form_input} defaultValue="" placeholder="profile picture" />
+                                <input name='profilePicture' type="text" className={style.form_input} defaultValue={myInfo?.profPic} placeholder="add profile picture link" />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Mobile Number</label>
-                                <input name='phone' type="text" className={style.form_input} placeholder="enter phone number" defaultValue="" />
+                                <input name='phone' type="text" className={style.form_input} placeholder="enter phone number" defaultValue={myInfo?.phone} />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Email addres</label>
-                                <input name='email' type="text" className={style.form_input} placeholder="enter email addres" defaultValue="" />
+                                <input name='email' type="text" className={style.form_input} placeholder="enter email addres" defaultValue={myInfo?.email} />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Facebook</label>
-                                <input name='facebook' type="text" className={style.form_input} placeholder="enter facebook" defaultValue="" />
+                                <input name='facebook' type="text" className={style.form_input} placeholder="enter facebook" defaultValue={myInfo?.facebook} />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Instagram</label>
-                                <input name='instagram' type="text" className={style.form_input} placeholder="enter instagram" defaultValue="" />
+                                <input name='instagram' type="text" className={style.form_input} placeholder="enter instagram" defaultValue={myInfo?.instagram} />
                             </div>
-                            <div className="col-md-12">
-                                <label className="labels">Twitter</label>
-                                <input name='twitter' type="text" className={style.form_input} placeholder="enter twitter" defaultValue="" />
+                            
+
+                            <div className={style.profileForm_container_btn}>
+                                <button className={style.profileForm_btn} type="submit">Save Profile</button>
+                                <button onClick={() => setIsProfile(!isProfile)} className={style.profileForm_btn} type="button">Cancel</button>
                             </div>
 
-                            <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div>
                         </form>
                     </div>
                 </div>

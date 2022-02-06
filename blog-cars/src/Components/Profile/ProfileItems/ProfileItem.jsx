@@ -2,8 +2,12 @@ import style from './ProfileItem.module.css';
 
 function ProfileItem({
     isProfile,
-    setIsProfile
+    setIsProfile,
+    user
 }) {
+
+    const myInfo = user?.userInfo;
+
     return (
         <div className={style.profileItem_container}>
             <div className={style.profileItem_row}>
@@ -21,36 +25,31 @@ function ProfileItem({
 
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Name</label>
-                        <p>My Name</p>
+                        <p>{myInfo?.name || 'Enter your name'}</p>
                     </div>
 
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Surname</label>
-                        <p>My surname</p>
+                        <p>{myInfo?.surname || 'Enter your surname'}</p>
                     </div>
 
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Mobile Number</label>
-                        <p>My phone</p>
+                        <p>{myInfo?.phone || 'Enter your phone number'}</p>
                     </div>
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Email addres</label>
-                        <p>My Email</p>
+                        <p>{myInfo?.email || 'Enter your email'}</p>
                     </div>
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Facebook</label>
-                        <p>My facebook</p>
+                        <p>{myInfo?.facebook || 'Enter you Facebook'}</p>
                     </div>
                     <div className={style.profileItem_div}>
                         <label className={style.profile_label}>Instagram</label>
-                        <p>Instagram</p>
+                        <p>{myInfo?.instagram || 'Enter you Instagram'}</p>
                     </div>
-                    <div className={style.profileItem_div}>
-                        <label className={style.profile_label}>Twitter</label>
-                        <p>Twiter</p>
-                    </div>
-
-
+                    
                 </div>
                 <div className={style.profileItem_container_btn}>
                     <button onClick={() => setIsProfile(!isProfile)} className={style.profileItem_btn}>Edit Profile</button>
