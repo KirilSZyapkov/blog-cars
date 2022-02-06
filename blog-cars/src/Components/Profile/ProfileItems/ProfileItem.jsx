@@ -13,7 +13,7 @@ function ProfileItem({
             <div className={style.profileItem_row}>
                 <div className={style.profileItem_header}>
                     <div className={style.profileItem_picture_container}>
-                        <img className={style.profileItem_picture} src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="logo" />
+                        <img className={style.profileItem_picture} src={myInfo?.profPic || 'https://history.ucr.edu/sites/g/files/rcwecm1916/files/styles/form_preview/public/blank-profile-picture-png.png?itok=MQ-iPuNG'} alt="logo" />
                     </div>
                 </div>
                 <div className={style.profilItem_heading}>
