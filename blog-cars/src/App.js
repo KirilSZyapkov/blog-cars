@@ -17,6 +17,7 @@ import EditPage from './Components/EditPage/EditPage';
 import MyBlogs from './Components/MyBlogs/MyBlogs';
 import Groups from './Components/Groups/Groups';
 import Profile from './Components/Profile/Profile';
+import UserPage from './Components/UserPage/UserPage';
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
           <section className="App-body-content">
             <Routes>
 
-              <Route path="/" element={<HomePage />} />
+              <Route exact path="/" element={<HomePage />} />
 
               <Route element={<RouteGuard />}>
                 <Route path="/create" element={<Create />} />
@@ -51,7 +52,8 @@ function App() {
                 <Route path='/blog/edit/:id' element={<EditPage />} />
                 <Route path='/my-blogs' element={<MyBlogs />} />
                 <Route path='/groups' element={<Groups />} />
-                <Route path='/profile/:id' element={<Profile />} />
+                <Route exact path='/profile/:id' element={<Profile />} />
+                <Route path='/user/:id' element={<UserPage />} />
               </Route>
 
 

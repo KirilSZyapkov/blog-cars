@@ -122,7 +122,7 @@ function BlogWelcomePage({
                 <div className={style.pad_large}>
                     <h3>Members</h3>
                     <ul className={style.tm_members}>
-                        <li><p>Admin: <Link to={`/admin/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
+                        <li><p>Admin: <Link to={`/user/${blog.admin?.objectId}`}>{blog.admin?.username}</Link> </p></li>
                         {members.length > 0 ? members.map(m => <Members isAdmin={isAdmin} key={Object.values(m)} user={m} removeFromTeamFunc={removeMemberFromGroup} />) : 'No body joined the group yet!'}
                         
                     </ul>
