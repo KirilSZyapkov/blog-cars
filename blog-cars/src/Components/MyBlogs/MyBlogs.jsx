@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getUserOwnBlogs } from '../../services/data';
+import AuthContext from '../../contexts/AuthContext';
 
 import style from './MyBlogs.module.css';
 import Item from '../HomePage/Item/Item';
@@ -8,10 +9,12 @@ function MyBlogs() {
 
     const [myBlogs, setMyBlogs] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
+    const { userId } = useContext(AuthContext);
+    
 
     useEffect(() => {
         async function fetch() {
-            const respons = await getUserOwnBlogs();
+            const respons = await getUserOwnBlogs(userId);
             const myOwnBlogs = respons.results;
             setMyBlogs(myOwnBlogs);
             setIsFetching(!isFetching);

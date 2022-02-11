@@ -1,0 +1,16 @@
+.user_page_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.user_info{
+border: 1px solid red;
+}
+
+.user_blogs{
+    
+    display:flex;
+    padding:10px;
+}
+
+    

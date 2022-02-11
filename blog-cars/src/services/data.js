@@ -33,8 +33,8 @@ export async function updateBlog(blogId, body) {
 
 }
 
-export async function getUserOwnBlogs() {
-    const userId = sessionStorage.getItem('userId');
+export async function getUserOwnBlogs(userId) {
+    
     const q = JSON.stringify({
         admin: {
             __type: 'Pointer',

@@ -44,6 +44,9 @@ function BlogChatPage({
 
     return (
         <section className={style.chat_container}>
+            <div className={style.chat_heading}>
+                <h1>{blog.blogName}</h1>
+            </div>
             <ChatList chatList={chatList} />
             {errorM && <Notification message={errorM} />}
 

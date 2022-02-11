@@ -22,6 +22,7 @@ import UserPage from './Components/UserPage/UserPage';
 function App() {
 
   const [user, setUser] = useState(sessionStorage.getItem('userName'));
+  const userId = sessionStorage.getItem('userId');
 
   function authorization() {
     
@@ -36,7 +37,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={user}>
+    <AuthContext.Provider value={{user, userId}}>
       <div className="App">
         <Header user={user} logOut={logOut} />
         <div className="App-body">

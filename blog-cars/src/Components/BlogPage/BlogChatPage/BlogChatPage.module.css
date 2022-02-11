@@ -35,3 +35,12 @@
 .chat_pagebtn{
     margin: 10px 0px;
 }
+
+.chat_heading{
+    text-align: center;
+    font-size: 25px;
+}
+
+.chat_heading h1{
+    margin: 0px;
+}
