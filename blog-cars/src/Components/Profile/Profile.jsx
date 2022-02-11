@@ -49,6 +49,8 @@ function Profile() {
         setErrorM(null);
     }, 8000);
 
+    if(!user.username) return <h1>Loading...</h1>;
+
     return (
         <div>
 

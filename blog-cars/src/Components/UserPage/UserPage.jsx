@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getUserOwnBlogs } from '../../services/data';
 import { getUserById } from '../../services/userApi';
 import Item from '../HomePage/Item/Item';
+import UserItem from './UserItem/UserItem';
 
 import style from './UserPage.module.css';
 
@@ -22,18 +23,17 @@ function UserPage() {
         fetch();
     }, []);
 
-    console.log(user);
-    console.log(userBlogs);
+   if(!user.username) return <h1>Loading...</h1>;
 
     return (
         <section className={style.user_page_container}>
 
             <section className={style.user_info}>
-                info
+            <UserItem user={user} />
             </section>
 
             <section className={style.user_blogs}>
-                {userBlogs?.length !== 0 ? userBlogs.map(d => (<Item key={d.objectId} {...d}/>)) : <h1>Loading...</h1>}
+                {userBlogs.map(d => (<Item key={d.objectId} {...d}/>))}
             </section>
 
         </section>

@@ -1,31 +1,30 @@
-.profileItem_container{
+.userItem_container{
     /* border: 1px solid red; */
     width: 61%;
     margin: auto;
-    
+    /* margin-top: 50px; */
     position: relative;
-    
+    padding-top: 30px;
 }
 
-.profileItem_picture{
+.userItem_picture{
     width: 250px;
     border-radius: 100%;
     
 }
 
-.profileItem_picture_container{
-   /* position: absolute;
+.userItem_picture_container{
+    /* position: absolute;
     top: -10%;
     left: 33%; */
     text-align: center;
-    margin-top: 4rem;
 }
 
-.profile_label{
+.user_label{
     font-weight: bold;
 }
 
-.profilItem_main{
+.userItem_main{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +32,7 @@
     
 }
 
-.profileItem_div{
+.userItem_div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,12 +41,12 @@
     
 }
 
-.profilItem_heading{
-    margin: 3rem 0;
+.userItem_heading{
+    /* margin: 4rem 0; */
     text-align: center;
 }
 
-.profileItem_btn{
+.userItem_btn{
     display: inline-block;
     background-color: #acd0c0;
     padding: 8px 16px;
@@ -56,10 +55,4 @@
     margin-right: 8px;
     border: none;
     font-size: 15px;
-}
-
-.profileItem_container_btn{
-    
-    text-align: center;
-    margin: 2rem 0;
 }
