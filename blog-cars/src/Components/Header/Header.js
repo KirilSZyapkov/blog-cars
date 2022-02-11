@@ -18,7 +18,7 @@ function Header({
     return (
         <div className={style.topnav}>
             <img className={style.nav_logo} src='/static/nav_logo.jpg' alt='logo' />
-            <input type="text" placeholder="Search.." onChange={(e) => search(e)} />
+            <input type="text" placeholder="Search by Name..." onChange={(e) => search(e)} />
             {user ?
                 <div>
                     <Link to={`/profile/${id}`}>Welcome {user}</Link>

@@ -18,6 +18,7 @@ import MyBlogs from './Components/MyBlogs/MyBlogs';
 import Groups from './Components/Groups/Groups';
 import Profile from './Components/Profile/Profile';
 import UserPage from './Components/UserPage/UserPage';
+import AboutUs from './Components/AboutUs/AboutUs';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path='/groups' element={<Groups />} />
                 <Route exact path='/profile/:id' element={<Profile />} />
                 <Route path='/user/:id' element={<UserPage />} />
+                <Route path='/about-us' element={<AboutUs />} />
               </Route>
 
 

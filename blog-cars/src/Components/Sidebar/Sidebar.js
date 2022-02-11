@@ -12,9 +12,15 @@ function Sidebar() {
                 <Link to="/groups"><i className="fas fa-users"></i> Groups</Link>
             </header>
             <footer className={style.sidebar_footer}>
+
                 <div className={style.sidebar_footer_content}>
-                <Link to="/about-us">About Us</Link>
-                <p>All rights reserved created by Kiril</p>
+                    
+                    <a href="https://www.facebook.com" target="_blank">Facebook</a>
+                    <a href="https://www.instagram.com" target="_blank" >Instagram</a>
+                    <a href="https://www.twitter.com" target="_blank" >Twitter</a>
+                    <a href="https://www.pinterest.com/" target="_blank" >Pinterest</a>
+                    <Link to="/about-us">About Us</Link>
+                    <p>All rights reserved created by Kiril</p>
 
                 </div>
             </footer>
