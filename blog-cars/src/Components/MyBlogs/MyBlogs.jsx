@@ -10,17 +10,30 @@ function MyBlogs() {
     const [myBlogs, setMyBlogs] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
     const { userId } = useContext(AuthContext);
+    const { query } = useContext(AuthContext);
     
 
     useEffect(() => {
+        setIsFetching(true);
+
         async function fetch() {
             const respons = await getUserOwnBlogs(userId);
             const myOwnBlogs = respons.results;
-            setMyBlogs(myOwnBlogs);
-            setIsFetching(!isFetching);
+            
+            setIsFetching(false);
+
+            if(query !== ""){
+                const filteredData = myOwnBlogs?.filter((blog)=> blog.blogName.toLowerCase().includes(query.toLowerCase()));
+
+                setMyBlogs(filteredData);
+
+            } else {
+
+                setMyBlogs(myOwnBlogs);
+            }
         }
         fetch();
-    }, []);
+    }, [query]);
 
    
 

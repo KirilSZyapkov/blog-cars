@@ -38,8 +38,13 @@
 
 .sidebar_footer{
   padding: 10px;
+  text-align: center;
 }
 
   .sidebar_footer_content{
     border-top: 2px solid lightgray;
+  }
+
+  .sidebar_footer_content_h2{
+    color: #acd0c0;
   }

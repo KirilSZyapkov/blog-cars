@@ -18,15 +18,16 @@ import MyBlogs from './Components/MyBlogs/MyBlogs';
 import Groups from './Components/Groups/Groups';
 import Profile from './Components/Profile/Profile';
 import UserPage from './Components/UserPage/UserPage';
-import AboutUs from './Components/AboutUs/AboutUs';
+
 
 function App() {
 
   const [user, setUser] = useState(sessionStorage.getItem('userName'));
+  const [query, setQuery] = useState('');
   const userId = sessionStorage.getItem('userId');
 
   function authorization() {
-    
+
     setUser(sessionStorage.getItem('userName'));
 
   }
@@ -37,10 +38,16 @@ function App() {
     setUser(sessionStorage.getItem('userName'));
   }
 
+  async function search(event) {
+    const t = event.target;    
+    setQuery(t.value);
+    
+  }
+
   return (
-    <AuthContext.Provider value={{user, userId}}>
+    <AuthContext.Provider value={{ user, userId, query }}>
       <div className="App">
-        <Header user={user} logOut={logOut} />
+        <Header search={search} user={user} logOut={logOut} />
         <div className="App-body">
           <Sidebar />
           <section className="App-body-content">
@@ -56,7 +63,7 @@ function App() {
                 <Route path='/groups' element={<Groups />} />
                 <Route exact path='/profile/:id' element={<Profile />} />
                 <Route path='/user/:id' element={<UserPage />} />
-                <Route path='/about-us' element={<AboutUs />} />
+
               </Route>
 
 
