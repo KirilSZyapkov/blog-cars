@@ -6,11 +6,13 @@ import Item from '../HomePage/Item/Item';
 import UserItem from './UserItem/UserItem';
 import AuthContext from '../../contexts/AuthContext';
 
+
 import style from './UserPage.module.css';
 
 function UserPage() {
     const [user, setUser] = useState({});
     const [userBlogs, setUserBlogs] = useState([]);
+    const [notFound, setNotFound] = useState(false)
     const { id } = useParams();
     const { query } = useContext(AuthContext);
 
@@ -22,18 +24,21 @@ function UserPage() {
             setUser(userData);
             setUserBlogs(respons.results);
 
-            if(query !== ""){
-                const filteredData = respons?.results?.filter((blog)=> blog.blogName.toLowerCase().includes(query.toLowerCase()));
+            const filteredData = respons?.results?.filter((blog) => blog.blogName.toLowerCase().includes(query.toLowerCase()));
 
-                setUserBlogs(filteredData);
-
+            if (filteredData.length === 0) {
+                setNotFound(true);
             } else {
-
-                setUserBlogs(respons.results);
+                setNotFound(false);
             }
+
+            setUserBlogs(filteredData);
+
         }
         fetch();
     }, [query]);
+
+
 
     if (!user.username) return <h1>Loading...</h1>;
 
@@ -43,11 +48,11 @@ function UserPage() {
             <section className={style.user_info}>
                 <UserItem user={user} />
             </section>
-
-            <section className={style.user_blogs}>
-                {userBlogs.map(d => (<Item key={d.objectId} {...d} />))}
-            </section>
-
+            {notFound ? <section className={style.user_page_not_found}> <div>404 Not found</div> </section> :
+                <section className={style.user_blogs}>
+                    {userBlogs.map(d => (<Item key={d.objectId} {...d} />))}
+                </section>
+            }
         </section>
     );
 

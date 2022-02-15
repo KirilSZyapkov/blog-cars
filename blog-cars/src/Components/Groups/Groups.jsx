@@ -3,11 +3,13 @@ import GroupItem from "./GroupItems/GroupItem";
 import AuthContext from '../../contexts/AuthContext';
 import style from './Groups.module.css';
 import { getUser } from '../../services/userApi';
+import NotFound from '../NotFound/NotFound';
 
 function Groups() {
 
     const [groups, setGroups] = useState([]);
     const [refresh, setRefresh] = useState(true);
+    const [notFound, setNotFound] = useState(false);
     const { query } = useContext(AuthContext);
 
     useEffect(() => {
@@ -15,14 +17,15 @@ function Groups() {
             const respons = await getUser();
             const list = respons.blogList;
 
-            if (query !== "") {
-                const filteredData = list?.filter((blog) => blog.blog[0].toLowerCase().includes(query.toLowerCase()));
-                setGroups(filteredData);
+            const filteredData = list?.filter((blog) => blog.blog[0].toLowerCase().includes(query.toLowerCase()));
 
+            if (filteredData.length === 0) {
+                setNotFound(true);
             } else {
-
-                setGroups(list);
+                setNotFound(false);
             }
+
+            setGroups(filteredData);
 
         };
         fetch();
@@ -32,6 +35,8 @@ function Groups() {
     function refreshPage() {
         setRefresh(!refresh);
     };
+
+    if (notFound) return <NotFound />;
 
     return (
         <div>

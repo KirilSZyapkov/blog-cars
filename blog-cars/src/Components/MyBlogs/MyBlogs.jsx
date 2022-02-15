@@ -4,11 +4,13 @@ import AuthContext from '../../contexts/AuthContext';
 
 import style from './MyBlogs.module.css';
 import Item from '../HomePage/Item/Item';
+import NotFound from '../NotFound/NotFound';
 
 function MyBlogs() {
 
     const [myBlogs, setMyBlogs] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
+    const [notFound, setNotFound] = useState(false)
     const { userId } = useContext(AuthContext);
     const { query } = useContext(AuthContext);
     
@@ -22,20 +24,21 @@ function MyBlogs() {
             
             setIsFetching(false);
 
-            if(query !== ""){
-                const filteredData = myOwnBlogs?.filter((blog)=> blog.blogName.toLowerCase().includes(query.toLowerCase()));
+            const filteredData = myOwnBlogs?.filter((blog)=> blog.blogName.toLowerCase().includes(query.toLowerCase()));
 
-                setMyBlogs(filteredData);
-
+            if(filteredData.length === 0){
+                setNotFound(true);
             } else {
-
-                setMyBlogs(myOwnBlogs);
+                setNotFound(false);
             }
+
+            setMyBlogs(filteredData);
+            
         }
         fetch();
     }, [query]);
 
-   
+   if(notFound) return <NotFound />;
 
     return (
         <section className={style.container}>

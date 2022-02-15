@@ -14,3 +14,10 @@
     margin-bottom: 15px;
     box-shadow: 1px -4px 20px 0px black;
 }    
+
+.user_page_not_found{
+    text-align: center;
+    margin-top: 115px;
+    font-size:45px;
+    font-weight:  bold;
+}
