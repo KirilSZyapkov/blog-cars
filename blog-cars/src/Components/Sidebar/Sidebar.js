@@ -15,9 +15,9 @@ function Sidebar() {
 
                 <div className={style.sidebar_footer_content}>
                     <h2 className={style.sidebar_footer_content_h2}>Follow us on</h2> 
-                    <a href="https://www.facebook.com" target="_blank">Facebook</a>
-                    <a href="https://www.instagram.com" target="_blank" >Instagram</a>
-                    <a href="https://www.twitter.com" target="_blank" >Twitter</a>
+                    <a href="https://www.facebook.com" rel="noreferrer" target="_blank">Facebook</a>
+                    <a href="https://www.instagram.com" rel="noreferrer" target="_blank" >Instagram</a>
+                    <a href="https://www.twitter.com" rel="noreferrer" target="_blank" >Twitter</a>
                                         
                     <p>All rights reserved created by Kiril</p>
 

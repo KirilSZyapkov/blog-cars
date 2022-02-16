@@ -23,7 +23,7 @@ function EditPage(){
         }
 
         fetch();
-    },[]);
+    },[id]);
 
 
     async function createNewBlog(e) {

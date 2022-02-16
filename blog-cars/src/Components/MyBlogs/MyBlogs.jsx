@@ -36,7 +36,7 @@ function MyBlogs() {
             
         }
         fetch();
-    }, [query]);
+    }, [query, userId]);
 
    if(notFound) return <NotFound />;
 

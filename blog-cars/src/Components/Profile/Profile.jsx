@@ -57,7 +57,7 @@ function Profile() {
             {errorM && Notification(errorM)}
             {isProfile ?
                 <ProfileItem user={user} setIsProfile={setIsProfile} isProfile={isProfile} /> :
-                <ProfileForm user={user} setIsProfile={setIsProfile} isProfile={isProfile} setIsProfile={setIsProfile} isProfile={isProfile} saveProfile={saveProfile} />}
+                <ProfileForm user={user} setIsProfile={setIsProfile} isProfile={isProfile} saveProfile={saveProfile} />}
 
         </div>
 

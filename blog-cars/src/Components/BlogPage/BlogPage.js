@@ -33,7 +33,7 @@ function BlogPage() {
 
         fetch();
 
-    }, [change]);
+    }, [change, id]);
 
     function update() {
 

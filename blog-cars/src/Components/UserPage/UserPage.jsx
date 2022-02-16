@@ -36,7 +36,7 @@ function UserPage() {
 
         }
         fetch();
-    }, [query]);
+    }, [query, id]);
 
 
 
