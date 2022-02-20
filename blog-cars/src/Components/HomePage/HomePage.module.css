@@ -6,11 +6,34 @@
     flex-wrap: wrap;
 }
 
+.mobile_footer{
+  display: none;
+  background-color: #121212;
+  padding: 15px;
+
+}
+
+.mobile_footer a {
+  margin: 0px 15px;
+  color: #acd0c0;
+}
+
+.mobile_footer h2, 
+.mobile_footer p{
+text-align: center;
+color: #acd0c0;
+}
+
 @media screen and (max-width: 1050px) {
   .container{
+    justify-content: space-evenly;
     
-    display: flex;
-    flex-wrap: wrap;
 }
 }
 
+@media screen and (max-width: 750px) {
+  .mobile_footer{
+    display: flex;
+    justify-content: center;
+  }
+}

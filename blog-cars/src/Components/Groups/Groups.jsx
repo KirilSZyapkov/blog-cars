@@ -4,6 +4,7 @@ import AuthContext from '../../contexts/AuthContext';
 import style from './Groups.module.css';
 import { getUser } from '../../services/userApi';
 import NotFound from '../NotFound/NotFound';
+import Loader from '../Loader/Loader';
 
 function Groups() {
 
@@ -42,7 +43,7 @@ function Groups() {
         <div>
 
             <section className={style.container}>
-                {groups.length !== 0 ? groups.map(g => <GroupItem refreshPage={refreshPage} key={g.blog[1]} {...g} />) : <h1>Loading...</h1>}
+                {groups.length !== 0 ? groups.map(g => <GroupItem refreshPage={refreshPage} key={g.blog[1]} {...g} />) : <Loader />}
             </section>
         </div>
     );

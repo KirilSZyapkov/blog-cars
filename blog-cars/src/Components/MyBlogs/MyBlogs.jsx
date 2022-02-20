@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { getUserOwnBlogs } from '../../services/data';
 import AuthContext from '../../contexts/AuthContext';
+import Loader from '../Loader/Loader';
 
 import style from './MyBlogs.module.css';
 import Item from '../HomePage/Item/Item';
@@ -42,7 +43,7 @@ function MyBlogs() {
 
     return (
         <section className={style.container}>
-            {isFetching ? <h1>Loading...</h1>
+            {isFetching ? <Loader />
              : <> { myBlogs.length > 0 ? myBlogs.map(b => (<Item {...b} key={b.objectId} />)) : <h1>You don't have blogs!</h1>} </>
              }
         </section>

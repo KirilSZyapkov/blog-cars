@@ -24,6 +24,7 @@ function App() {
 
   const [user, setUser] = useState(sessionStorage.getItem('userName'));
   const [query, setQuery] = useState('');
+  
   const userId = sessionStorage.getItem('userId');
 
   function authorization() {
@@ -39,13 +40,13 @@ function App() {
   }
 
   async function search(event) {
-    const t = event.target;    
+    const t = event.target;
     setQuery(t.value);
-    
+
   }
 
   return (
-    <AuthContext.Provider value={{ user, userId, query }}>
+    <AuthContext.Provider value={{ user, userId, query}}>
       <div className="App">
         <Header search={search} user={user} logOut={logOut} />
         <div className="App-body">

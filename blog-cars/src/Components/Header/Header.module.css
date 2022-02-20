@@ -38,4 +38,61 @@
   .logout_btn{
     background-color: #121212;
   }
+
+  .topnav_user_icon,
+  .topnav_toggle_menu,
+  .header_mobile{
+    display:none;
+  }
+
+  .header_mobile a {
+    color: #acd0c0;
+    padding: 15px;
+   text-decoration: none;
+  }
+
  
+  
+  @media screen and (max-width: 750px) {
+    .topnav{
+      justify-content: space-evenly;
+    }
+   
+    .nav_logo{
+      display:none;
+    }
+
+    .header_mobile{
+    
+      background-color: #121212;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .topnav_user_icon,
+    .topnav_toggle_menu{
+      display:block;
+    }
+
+    .topnav__icon{
+      width: 25px;
+      border: none;
+    }
+
+    .topnav_user{
+      display:none;
+    }
+
+    .topnav input[type=text] {
+        margin-right: 2px;
+        width: 30%;
+    }
+    
+    .topnav_toggle_menu{
+      border-radius: 100px;
+      border: none;
+      padding: 10px;
+      background-color: #acd0c0;
+    }
+ }

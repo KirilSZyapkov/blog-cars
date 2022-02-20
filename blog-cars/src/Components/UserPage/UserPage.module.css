@@ -21,3 +21,10 @@
     font-size:45px;
     font-weight:  bold;
 }
+
+@media screen and (max-width: 1050px) {
+    .user_blogs{
+      justify-content: space-evenly;
+      
+  }
+  }
