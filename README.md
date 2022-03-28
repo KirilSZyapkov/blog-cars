@@ -9,7 +9,7 @@ When you find a forum that you like you have to send request to join the forum. 
 and to write back too.
 After some time you can leav the group. If admin decides that you don't belong to his forum he can remove you from the group.
 
-Except the main page(home page) you can brouse two other pages, which are you own blogs and the you are member of.
+Except the main page(home page) you can brouse two other pages, which are you own blogs and the one you are member of.
 
 In your profile page you can edit after time your personal information if you like.
 
